@@ -1,0 +1,29 @@
+{
+"display":"List",
+"payload":[
+			{
+				"name":"Suresh A",
+				"title":"Analyst",
+				"dept":"IT",
+				"lob":"",
+				"offphoneno":"43809298",
+				"mobileno":"9888234657",
+				"wks":"1011",
+				"building":"Tech Park",
+				"floor":"10",
+				"email":"sureshas@gmail.com"	
+			},
+			{
+				"name":"Suresh Kumar",
+				"title":"Specialist",
+				"dept":"IT",
+				"lob":"",
+				"offphoneno":"43809299",
+				"mobileno":"9888265475",
+				"wks":"0911",
+				"building":"Tech Park",
+				"floor":"09",
+				"email":"sureshkumar@gmail.com"	
+			}
+		 ]
+}

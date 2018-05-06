@@ -1,0 +1,55 @@
+{
+    "env": "default",
+    "app": {
+        "port": 5001,
+        "host": "localhost",
+        "authEnabled": false,
+        "authHeader": "Basic ",
+        "userRefereshInterval": 900000,
+        "gcInterval": 3600000
+
+    },
+    "auth": {
+        "secret": "secret",
+        "ttl": 3600
+    },
+    "orgs":{
+        "aaa" : {
+            "actions" :[
+                {
+                    "action": "instbot.examtime",
+                    "source": "local",
+                    "url": "/examtime.json",
+					"displaytype":"List",
+					"message":"Here is your Exam time table"
+					
+                },
+                {
+                    "action": "instbot.dailytime",
+                    "source": "local",
+                    "url": "/dailytime.json",
+					"displaytype" : "List",
+					"message":"Here is your leave details"
+                },
+				{
+                    "action": "instbot.attendance",
+                    "source": "db",
+                    "url": "/student/attendance",
+					"displaytype" : "List",
+					"message":"Here is your attendance details"
+                },
+                {
+                    "action": "instbot.placement",
+                    "source": "db",
+                    "url": "/student/placement",
+					"displaytype" : "List",
+					"message":"Here is your placement list"
+                }
+            ]
+        }
+        
+
+    }
+
+    
+}
