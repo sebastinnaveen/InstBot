@@ -9,7 +9,7 @@ var express = require('express');
 var bodyparser = require('body-parser');
 var methodOverride = require('method-override');
 var app = express();
-var routes = require(rootdir+'/routes/orgbot');
+var routes = require(rootdir+'/routes/instbot');
 var path = require('path');
 var async = require('async');
 
@@ -28,17 +28,17 @@ app.use(function(req,res,next){
     next();
 });
 
-app.use('/orgbot', routes);
+app.use('/instbot', routes);
 
 //Landing page
 app.get('/', function(req, res){
     res.json({message : 'Service started'});
 });
 
-/*app.listen(config.app.port, function(){
+app.listen(config.app.port, function(){
     console.log("Application started on port: "+ config.app.port);
-});*/
-
-app.listen(process.env.PORT, function(){
-    console.log("Application started on port: "+ process.env.PORT);
 });
+
+/*app.listen(process.env.PORT, function(){
+    console.log("Application started on port: "+ process.env.PORT);
+});*/

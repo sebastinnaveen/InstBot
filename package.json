@@ -10,6 +10,7 @@
   "author": "Sebastin Naveen",
   "license": "ISC",
   "dependencies": {
+    "apiai": "^4.0.3",
     "async": "^2.6.0",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",

@@ -1,9 +1,11 @@
 var admin = require('firebase-admin');
 var firebaseNodejs = require('firebase-nodejs')
-var serviceAccount = require(rootdir+'/config/awscaas-firebase-adminsdk-58pyh-5e323ef242.json');
+//var serviceAccount = require(rootdir+'/config/instbot-firebase-adminsdk.json');
+var serviceAccount = require(rootdir+'/config/awscaas-firebase-adminsdk.json');
 var fbConnection =  admin.initializeApp({
 		credential: admin.credential.cert(serviceAccount),
-		databaseURL: "https://awscaas.firebaseio.com"
+	//	databaseURL: "https://instbot-35e8a.firebaseio.com/"
+	databaseURL: "https://awscaas.firebaseio.com/"
 		});
 
 
