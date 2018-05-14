@@ -30,10 +30,10 @@ module.exports = {
     },
 
     login: function(req, res, next){
-        //var studname = req.body.users.studname;
-        var studname ='Suresh';
+        var username = req.body.users.username;
+       // var studname ='Suresh';
 		fbService.getData('/login/users/', function(jsonResponse){
-			var result = util.getUserDetails(jsonResponse, studname);
+			var result = util.getUserDetails(jsonResponse, username);
 				    
             res.status(200).json(result);
 				

@@ -13,6 +13,11 @@
         "secret": "secret",
         "ttl": 3600
     },
+    "nlp":{
+        "dialogflow":{
+            "client_key": "4ef92f9ef02741138ce66e2112109f83"
+        }
+    },
     "orgs":{
         "aaa" : {
             "actions" :[

@@ -1,0 +1,21 @@
+{
+"helps":[
+			{
+				"name":"Time table Look up",
+				"title":"Whos <Student name>"
+			},
+			{
+				"name":"Exam time table",
+				"title":"Get my exam time table / exam time"
+			},
+			{
+				"name":"Attendance",
+				"title":"Attendance"
+			},
+			{
+				"name":"Placement",
+				"title":"Get my placements"
+			}
+			
+		 ]
+}

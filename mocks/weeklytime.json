@@ -1,7 +1,6 @@
 {
     "name": "Suresh",
     "studid": "123445",
-    "showweekly": "Yes",
     "time":[
         {
           "subjname": "Programming Languages",
@@ -39,22 +38,40 @@
           "endTime": "5 PM"
         },
         {
-          "id": 4,
-          "name": "Data Structures",
+          
+          "subjname": "Data Structures",
           "prof": "Amar Saric / Becir Isakovic",
           "place": "ITLab316",
-          "day": 2,
-          "startTime": 9,
-          "endTime": 11
+          "day": "Tuesday",
+          "startTime": "9 AM",
+          "endTime": "11 AM"
         },
         {
-          "id": 5,
-          "name": "Calculus II",
+          
+          "subjname": "Calculus II",
           "prof": "Nermina Durmic",
           "place": "Room 215",
-          "day": 2,
-          "startTime": 12,
-          "endTime": 13
+          "day": "Tuesday",
+          "startTime": "11 AM",
+          "endTime": "12 PM"
+        },
+        {
+          
+          "subjname": "General Physics II",
+          "prof": "Serkan Balyimez",
+          "place": "Room 215",
+          "day": "Tuesday",
+          "startTime": "1 PM",
+          "endTime": "3 PM"
+        },
+        {
+          
+          "subjname": "Bosnian Language II",
+          "prof": "Izudin Tatarevic",
+          "place": "Room 215",
+          "day": "Tuesday",
+          "startTime": "3 PM",
+          "endTime": "5 PM"
         }
       ]
 }

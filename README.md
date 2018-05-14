@@ -1,1 +1,1 @@
-# OrgBot
+# InstBot

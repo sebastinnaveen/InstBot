@@ -13,6 +13,11 @@
         "secret": "secret",
         "ttl": 3600
     },
+    "nlp":{
+        "dialogflow":{
+            "client_key": "4ef92f9ef02741138ce66e2112109f83"
+        }
+    },
     "orgs":{
         "aaa" : {
             "actions" :[
@@ -29,13 +34,20 @@
                     "source": "local",
                     "url": "/dailytime.json",
 					"displaytype" : "List",
-					"message":"Here is your leave details"
+					"message":"Here is your Daily time table"
+                },
+                {
+                    "action": "instbot.weeklytime",
+                    "source": "local",
+                    "url": "/weeklytime.json",
+					"displaytype" : "List",
+					"message":"Here is your Weekly time table"
                 },
 				{
                     "action": "instbot.attendance",
                     "source": "db",
                     "url": "/student/attendance",
-					"displaytype" : "List",
+					"displaytype" : "Card",
 					"message":"Here is your attendance details"
                 },
                 {
@@ -44,6 +56,13 @@
                     "url": "/student/placement",
 					"displaytype" : "List",
 					"message":"Here is your placement list"
+                },
+				{
+                    "action": "instbot.help",
+                    "source": "local",
+                    "url": "/help.json",
+					"displaytype" : "List",
+					"message":"InstBot help"
                 }
 				
             ]

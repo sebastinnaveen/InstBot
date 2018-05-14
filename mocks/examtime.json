@@ -1,103 +1,35 @@
 {
 "display":"List",
-"payload":[
+"examtime":[
 	{
-		"exam_id"        : 1,
-		"faculty"        : 0,
-		"teacher_id"     : 555000,
-		"students"       : [10000, 10001, 10002],
-		"room_type"      : 0,
-		"availabilities" : [true, true, true, false, false, false],
-		"dependencies"   : []
+		"subject"        : "Maths",
+		"room no"        : "b2",
+		"REGID"		     : 555000,
+		"Date"	         : "20/05/2018"
 	},
 	{
-		"exam_id"        : 2,
-		"faculty"        : 0,
-		"teacher_id"     : 555001,
-		"students"       : [10000, 10003],
-		"room_type"      : 0,
-		"availabilities" : [false, true, true, false, false, false],
-		"dependencies"   : []
+		"subject"        : "Physics",
+		"room no"        : "b1",
+		"REGID"		     : 555000,
+		"Date"	         : "21/05/2018"
 	},
 	{
-		"exam_id"        : 3,
-		"faculty"        : 0,
-		"teacher_id"     : 555002,
-		"students"       : [10002, 10004],
-		"room_type"      : 0,
-		"availabilities" : [false, true, true, true, false, false],
-		"dependencies"   : [8]
+		"subject"        : "Chemistry",
+		"room no"        : "b3",
+		"REGID"		     : 555000,
+		"Date"	         : "22/05/2018"
 	},
 	{
-		"exam_id"        : 4,
-		"faculty"        : 0,
-		"teacher_id"     : 555003,
-		"students"       : [10003, 10004, 10005, 10006],
-		"room_type"      : 0,
-		"availabilities" : [false, false, true, false, false, false],
-		"dependencies"   : []
+		"subject"        : "Botony",
+		"room no"        : "b4",
+		"REGID"		     : 555000,
+		"Date"	         : "23/05/2018"
 	},
 	{
-		"exam_id"        : 5,
-		"faculty"        : 0,
-		"teacher_id"     : 555001,
-		"students"       : [10000, 10001, 10003],
-		"room_type"      : 1,
-		"availabilities" : [false, false, true, true, false, false],
-		"dependencies"   : []
-	},
-	{
-		"exam_id"        : 6,
-		"faculty"        : 0,
-		"teacher_id"     : 555004,
-		"students"       : [10004],
-		"room_type"      : 1,
-		"availabilities" : [false, false, false, true, true, true],
-		"dependencies"   : [7, 8]
-	},
-	{
-		"exam_id"        : 7,
-		"faculty"        : 0,
-		"teacher_id"     : 555005,
-		"students"       : [10001],
-		"room_type"      : 0,
-		"availabilities" : [false, false, false, true, true, false],
-		"dependencies"   : [1]
-	},
-	{
-		"exam_id"        : 8,
-		"faculty"        : 0,
-		"teacher_id"     : 555006,
-		"students"       : [10002],
-		"room_type"      : 0,
-		"availabilities" : [true, true, false, false, true, true],
-		"dependencies"   : []
-	}
-],
-"rooms" : [
-	{
-		"room_id"   : 0,
-		"room_type" : 0,
-		"faculty"   : 0,
-		"capacity"  : 1
-	},
-	{
-		"room_id"   : 1,
-		"room_type" : 0,
-		"faculty"   : 0,
-		"capacity"  : 2
-	},
-	{
-		"room_id"   : 2,
-		"room_type" : 0,
-		"faculty"   : 0,
-		"capacity"  : 5
-	},
-	{
-		"room_id"   : 3,
-		"room_type" : 1,
-		"faculty"   : 0,
-		"capacity"  : 4
+		"subject"        : "Zoology",
+		"room no"        : "b5",
+		"REGID"		     : 555000,
+		"Date"	         : "24/05/2018"
 	}
 		 ]
 }

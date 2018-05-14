@@ -35,10 +35,10 @@ app.get('/', function(req, res){
     res.json({message : 'Service started'});
 });
 
-app.listen(config.app.port, function(){
+/*app.listen(config.app.port, function(){
     console.log("Application started on port: "+ config.app.port);
-});
-
-/*app.listen(process.env.PORT, function(){
-    console.log("Application started on port: "+ process.env.PORT);
 });*/
+
+app.listen(process.env.PORT, function(){
+    console.log("Application started on port: "+ process.env.PORT);
+});
