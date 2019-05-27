@@ -1,4 +1,4 @@
-# InstBot
+# Cahtbot for the Institution
 
 ## Prerequisites
 
