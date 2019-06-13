@@ -1,14 +1,32 @@
 {
   "name": "instbot",
+  "description": "A bot fullfillment service for a institution for running Node.js applications on Google Cloud Platform",
   "version": "1.0.0",
-  "description": "A bot fullfillment service for a institution",
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "engines": {
+    "node": ">=8"
+  },
   "main": "index.js",
+  "private": true,
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true,
+    "test": {
+      "app": {
+        "args": [
+          "index.js"
+        ],
+        "msg": "bot fullfillment service for a institution!"
+      }
+    }
+  },
   "scripts": {
     "start": "node index.js",
-    "test": "test"
+    "e2e": "repo-tools test deploy",
+    "test": "repo-tools test app",
+    "cover": "nyc --cache npm test; nyc report --reporter=html"
   },
-  "author": "Sebastin Naveen",
-  "license": "ISC",
   "dependencies": {
     "apiai": "^4.0.3",
     "async": "^2.6.0",
@@ -17,11 +35,11 @@
     "body-parser": "^1.18.2",
     "config": "^1.30.0",
     "constants": "0.0.2",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "express-session": "^1.15.6",
     "express-winston": "^2.5.1",
-    "firebase": "^4.13.1",
-    "firebase-admin": "^5.12.0",
+    "firebase": "^6.0.4",
+    "firebase-admin": "^8.0.0",
     "firebase-nodejs": "^1.0.1-1.1",
     "generic-pool": "^3.4.2",
     "jsonwebtoken": "^8.2.1",
@@ -36,5 +54,10 @@
     "util": "^0.10.3",
     "winston": "^2.4.2",
     "winston-daily-rotate-file": "^3.1.3"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^3.0.0",
+    "ava": "^0.25.0",
+    "supertest": "^4.0.0"
   }
 }
