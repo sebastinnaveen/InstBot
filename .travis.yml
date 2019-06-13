@@ -12,7 +12,9 @@ cache:
   - node_modules
   - "$HOME/google-cloud-sdk/"
 install:
-  - npm install
+  - sudo npm cache clean -f
+  - sudo npm install -g n
+  - sudo n stable
   
 script:
   - node index.js
