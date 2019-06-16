@@ -16,6 +16,9 @@ router.get('/test', function(req, res, next){
 router.get('/testjson', function(req, res, next){
   controller.testjson(req, res, next);
 })
+router.get('/getdialogflowkey', function(req, res, next){
+  controller.getdialogflowkey(req, res, next);
+})
 
 router.post('/login', function(req, res, next){
   controller.login(req, res, next);
@@ -25,6 +28,9 @@ router.post('/nlp', function(req, res, next){
 });
 router.post('/fullfilment', function(req, res, next){
   controller.fullfilment(req, res, next);
+});
+router.post('/updatedata', function(req, res, next){
+  controller.updateData(req, res, next);
 });
 
 module.exports = router;
