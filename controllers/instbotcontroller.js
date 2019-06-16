@@ -28,6 +28,21 @@ module.exports = {
             res.status(200).json(responsedata);
         });
     },
+	updateData:function(req,res,next){
+		var payload = req.body.dialogflow;
+		console.log(payload);
+		fbService.updateData('/dialogflow',payload,function(jsonResp){
+			console.log(jsonResp);
+			res.status(200).json(jsonResp);
+		});
+		
+	},
+	getdialogflowkey:function(req,res,next){
+		fbService.getData('/dialogflow', function(jsonResponse){
+	        res.status(200).json(jsonResponse)
+				
+        });
+	},
 
     login: function(req, res, next){
         var username = req.body.users.username;
