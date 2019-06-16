@@ -16,6 +16,17 @@ module.exports = {
         }
         callback(fbresponse);
     },
+	updateData:function(url,payload,callback){
+		//var obj = {"dialogflow":"10"};
+		var updateStatus =  firebaseNodejs.updateData(fbConnection,url,payload);
+		callback(updateStatus);
+		
+	},
+	insertData:function(url,payload,callback){
+		var insertStatus =  firebaseNodejs.insertData(fbConnection,url,payload);
+		callback(insertStatus);
+		
+	},
 	
 	getData: function(url,callback){
 	firebaseNodejs.selectData(fbConnection, url, 'value', response => {
