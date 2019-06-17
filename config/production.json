@@ -1,7 +1,7 @@
 {
     "env": "production",
     "app": {
-        "port": 5001,
+        "port": 8080,
         "host": "localhost",
         "authEnabled": false,
         "authHeader": "Basic ",
