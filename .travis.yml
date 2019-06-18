@@ -1,5 +1,6 @@
-language: node_js
 sudo: false
+language: node_js
+
 
 node_js:
   - "10"
@@ -11,20 +12,21 @@ cache:
 install:
   - npm install
     
-branches:
-  only:
-    - master
+script:
+  - node index.js
+
+deploy:
+    provider: gae
+    skip_cleanup: true
+    keyfile: client-secret.json
+    project: instbotrpa
+    default: true
+ 
+
 notifications:
   email:
     recipients:
       - sebasmtech@gmail.com
     on_success: never
     on_failure: always
-deploy:
-    provider: gae
-    # Skip cleanup so api_key.py and vendored dependencies are still there
-    skip_cleanup: true
-    keyfile: client-secret.json
-    project: instbotrpa
-    default: true
-    
+
