@@ -1,6 +1,9 @@
 sudo: false
 language: node_js
 
+node_js:
+  10
+
 before_install:
   - gcloud auth activate-service-account --key-file client-secret.json
   
@@ -11,9 +14,11 @@ install:
   - npm install
 
 script:
-  - node index.js
+  
 
   - gcloud -q app deploy app.yaml --promote
+
+  - node index.js
 
  
 
