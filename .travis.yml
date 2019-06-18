@@ -1,6 +1,22 @@
 language: node_js
-sudo: required
+sudo: false
 
+node_js:
+  - "10"
+
+cache:
+  directories:
+  - node_modules
+  
+install:
+  - npm install
+    
+
+
+ 
+branches:
+  only:
+    - master
 notifications:
   email:
     recipients:
@@ -14,3 +30,5 @@ deploy:
     keyfile: client-secret.json
     project: instbotrpa
     default: true
+ on:
+    all_branches: true
