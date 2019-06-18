@@ -18,7 +18,7 @@ script:
 
   - gcloud -q app deploy app.yaml --promote
 
-  - node index.js
+  
 
  
 
