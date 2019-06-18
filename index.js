@@ -39,6 +39,6 @@ app.get('/', function(req, res){
     console.log("Application started on port: "+ config.app.port);
 });*/
 
-app.listen(process.env.PORT, function(){
-    console.log("Application started on port: "+ process.env.PORT);
+app.listen(8080, function(){
+    console.log("Application started on port: "+ 8080);
 });
