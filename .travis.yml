@@ -11,9 +11,6 @@ cache:
 install:
   - npm install
     
-
-
- 
 branches:
   only:
     - master
@@ -30,5 +27,4 @@ deploy:
     keyfile: client-secret.json
     project: instbotrpa
     default: true
- on:
-    all_branches: true
+   
