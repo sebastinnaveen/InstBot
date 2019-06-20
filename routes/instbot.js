@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var controller = require(rootdir+'/controllers/instbotcontroller');
+var fbService = require(rootdir+'/services/firebaseservice.js');
 
 //initlize firebase
 /*firebase.initializeApp({
@@ -30,10 +31,18 @@ router.post('/login', function(req, res, next){
   controller.login(req, res, next);
 });
 router.post('/nlp', function(req, res, next){
-  controller.handleTextRequest(req, res, next);
+  fbService.getData('/config', function(dynamicConfig){
+    global.dynamicConfig = dynamicConfig
+    controller.handleTextRequest(req, res, next);
+  });
+  
 });
 router.post('/fullfilment', function(req, res, next){
-  controller.fullfilment(req, res, next);
+  fbService.getData('/config', function(dynamicConfig){
+    global.dynamicConfig = dynamicConfig
+    controller.fullfilment(req, res, next);
+  });
+  
 });
 router.post('/updatedata', function(req, res, next){
   controller.updateData(req, res, next);

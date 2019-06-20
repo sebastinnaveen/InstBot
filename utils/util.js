@@ -12,7 +12,7 @@ var responseData= {
 
 module.exports = {
     getActionConfig: function(action){
-        var result = _.filter(config.orgs.aaa.actions, function(data){
+        var result = _.filter(dynamicConfig.actions, function(data){
             return data.action === action;
         })
 

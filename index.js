@@ -1,6 +1,7 @@
 // Initialize global variables here
 global.rootdir = __dirname;
 global.config = require('config');
+global.dynamicConfig = {};
 //global.logger = require(rootdir+'/')
 
 
@@ -38,7 +39,7 @@ app.get('/', function(req, res){
 /*app.listen(config.app.port, function(){
     console.log("Application started on port: "+ config.app.port);
 });*/
-
-app.listen(8080, function(){
-    console.log("Application started on port: "+ 8080);
+const port=process.env.PORT||config.app.port;
+app.listen(port, function(){
+    console.log("Application started on port: "+ port);
 });

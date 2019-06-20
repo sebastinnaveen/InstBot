@@ -4,7 +4,8 @@ var apiai = require('apiai');
 
 module.exports = {
     dfTextRequest: function(request, callback){
-        var app = apiai(config.nlp.dialogflow.client_key);
+        console.log(dynamicConfig.nlp.dialogflow.client_key);
+        var app = apiai(dynamicConfig.nlp.dialogflow.client_key);
 
         var request = app.textRequest(request.text, {
             sessionId: request.sessionId

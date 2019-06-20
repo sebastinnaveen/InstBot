@@ -50,14 +50,14 @@ module.exports = {
 	updateData:function(req,res,next){
 		var payload = req.body.dialogflow;
 		console.log(payload);
-		fbService.updateData('/dialogflow',payload,function(jsonResp){
+		fbService.updateData('/config/nlp/dialogflow',payload,function(jsonResp){
 			console.log(jsonResp);
 			res.status(200).json(jsonResp);
 		});
 		
 	},
 	getdialogflowkey:function(req,res,next){
-		fbService.getData('/dialogflow', function(jsonResponse){
+		fbService.getData('config/nlp/dialogflow', function(jsonResponse){
 	        res.status(200).json(jsonResponse)
 				
         });
