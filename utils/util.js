@@ -32,8 +32,8 @@ module.exports = {
 					"attachments": [
 						{
 						"text": "",
-						"fallback": "",
-						"callback_id": "approval",
+						"fallback": "approve_fb",
+						"callback_id": "approval_faqwf",
 						"color": "#3AA3E3",
 						"attachment_type": "default",
 						"actions": [
