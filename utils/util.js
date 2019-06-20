@@ -18,6 +18,58 @@ module.exports = {
 
         return result;
     },
+	postDataToSlack:function(message,isApproval){
+        webhookUri = "https://hooks.slack.com/services/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";
+        
+       slack = new Slack();
+       slack.setWebhook(webhookUri);
+		
+	   if(isApproval){
+				slack.webhook({
+					channel: "#faqbotapproval",
+					username: "faqbot",
+					text: message,
+					"attachments": [
+						{
+						"text": "",
+						"fallback": "",
+						"callback_id": "approval",
+						"color": "#3AA3E3",
+						"attachment_type": "default",
+						"actions": [
+							{
+							"name": "approval",
+							"text": "Approve",
+							"type": "button",
+							"value": "approve"
+							},
+							{
+							"name": "approval",
+							"text": "Reject",
+							"type": "button",
+							"value": "reject"
+							}
+						]
+						}
+					]
+				}, function(err, response) {
+					console.log(response);
+					return false;
+				});
+	}else{
+		slack.webhook({
+			channel: "#faqbotapproval",
+			username: "faqbot",
+			text: message
+		  }, function(err, response) {
+			console.log(response);
+			return false;
+		  });
+	}
+	   console.log("Posted to slack");
+       return true;
+       
+    },
 	getUserDetails : function(users, username){
 		var result = _.filter(users, function(data){
             return data.username.toLowerCase() === username.toLowerCase();
