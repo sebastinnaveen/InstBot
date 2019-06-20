@@ -1,5 +1,5 @@
 var _ = require('lodash');
-
+var Slack = require('slack-node');
 var responseData= {
 	payload : {
 		displaytype: '',
