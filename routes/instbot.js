@@ -19,6 +19,12 @@ router.get('/testjson', function(req, res, next){
 router.get('/getdialogflowkey', function(req, res, next){
   controller.getdialogflowkey(req, res, next);
 })
+router.post('/sendslackmessage', function(req, res, next){
+  controller.sendslackmessage(req, res, next);
+})
+router.post('/postfromslack', function(req, res, next){
+  controller.postfromslack(req, res, next);
+})
 
 router.post('/login', function(req, res, next){
   controller.login(req, res, next);
