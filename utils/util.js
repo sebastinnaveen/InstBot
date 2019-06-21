@@ -71,12 +71,15 @@ module.exports = {
        
 	},
 	getNpWords : function(obj, approvalId){
-		var result = _.filter(obj, function(data){
+		
+		_.forEach(obj, function(data){
 			
-            return data.id === approvalId;
+            if(data.id === approvalId){
+				data.status = 'approved';
+			}
 		})
 		
-		return result;
+		return obj;
 	},
 	getUserDetails : function(users, username){
 		var result = _.filter(users, function(data){

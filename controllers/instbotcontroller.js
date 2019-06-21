@@ -77,21 +77,24 @@ module.exports = {
         var msg = "Thank you for approval.";
         console.log(req.body.text)
         var textArr = req.body.text.split('#');
-        var approvalId = textArr[1];
+        var approvalId =  +textArr[1];
         fbService.getData('/npwords',function(jsonResponse){
-            
+            if(!jsonResponse)
+                return null;
              var npwords = util.getNpWords(jsonResponse,approvalId);
-              console.log(npwords);
-               npwords.status = "approved";
+               console.log(npwords)
+               fbService.deleteData('/npwords',npwords,function(jsonResp){
+                fbService.insertData('/npwords',npwords,function(jsonResp){
+
+                    var result = util.postDataToSlack(msg,false);
+                    
+                     if(result)
+                         res.status(200).json("Posted to Slack"); 
+                     else
+                         res.status(400).json("Error while Posting to Slack"); 
+
+                });
                 
-               fbService.updateData('/npwords',npwords,function(jsonResp){
-                console.log(jsonResp);
-                var result = util.postDataToSlack(msg,false);
-                console.log(result);
-                if(result)
-                    res.status(200).json("Posted to Slack"); 
-                else
-                    res.status(400).json("Error while Posting to Slack"); 
                 
                 });
             });  

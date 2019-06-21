@@ -27,6 +27,11 @@ module.exports = {
 		callback(insertStatus);
 		
 	},
+	deleteData:function(url,payload,callback){
+		var deleteStatus =  firebaseNodejs.deleteData(fbConnection,url,payload);
+		callback(deleteStatus);
+		
+	},
 	
 	getData: function(url,callback){
 	firebaseNodejs.selectData(fbConnection, url, 'value', response => {
