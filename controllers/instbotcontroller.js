@@ -71,7 +71,7 @@ module.exports = {
         fbService.getData('/npwords',function(jsonResponse){
         
             msg = msg+ 'Approval ID : '+id + '\n';
-          var npwords = util.getNpWords(jsonResponse,id);
+          var npwords = util.getWordsId(jsonResponse,id);
           console.log(npwords);
             _.forEach(npwords[0].words, function(value) {
                 msg = msg + value + '\n';

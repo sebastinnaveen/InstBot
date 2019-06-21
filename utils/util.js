@@ -82,6 +82,15 @@ module.exports = {
 		
 		return obj;
 	},
+	getWordsId : function(obj, approvalId){
+		
+		var r = _.filter(obj, function(data){
+			
+            return data.id === approvalId
+		})
+		
+		return r;
+	},
 	getUserDetails : function(users, username){
 		var result = _.filter(users, function(data){
             return data.username.toLowerCase() === username.toLowerCase();
