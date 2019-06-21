@@ -120,16 +120,21 @@ module.exports = {
 			}*/
 			if(queryText!=''){
 				var newData;
-				if(_.isArray(response)){
-					newData = [];
-					_.each(response, function(re){
-						var d = _.pick(re, actionData.responsekeys);
-						newData.push(d);
-					})
-
-				}else {
-					newData = _.pick(response, actionData.responsekeys);
+				if(actionData.responsekeys.length > 0){
+					if(_.isArray(response)){
+						newData = [];
+						_.each(response, function(re){
+							var d = _.pick(re, actionData.responsekeys);
+							newData.push(d);
+						})
+	
+					}else {
+						newData = _.pick(response, actionData.responsekeys);
+					}
+				}else{
+					newData = response;
 				}
+				
 				responseData.payload.message = actionData.message;
 				responseData.payload.responsekeys = actionData.responsekeys;
 				responseData.payload.data = newData;
@@ -151,7 +156,8 @@ module.exports = {
 				responsekeys: []
 			}
 		}
-				var newData;
+			var newData;
+			if(actionData.responsekeys.length > 0){
 				if(_.isArray(response)){
 					newData = [];
 					_.each(response, function(re){
@@ -162,6 +168,9 @@ module.exports = {
 				}else {
 					newData = _.pick(response, actionData.responsekeys);
 				}
+			}else{
+				newData = response;
+			}
 				responseData.payload.data = newData;
 				responseData.payload.responsekeys = actionData.responsekeys;
 				responseData.payload.message = actionData.message;
