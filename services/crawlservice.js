@@ -17,12 +17,9 @@ module.exports = {
             let $ = cheerio.load(html.data);
             _.each(actionData.parsing, function(data){
                 var resu = {
-                    parsetxt: data.parsetxt,
-                    value: ''
                 }
                 //console.log(data.selector);
-                resu.value= $(data.selector).html();
-                console.log(resu.value);
+                resu[data.parsetxt]= $(data.selector).html();
                 result.push(resu);
             })
             callback(result);
