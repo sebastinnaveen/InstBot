@@ -5,6 +5,7 @@ var fileService = require(rootdir+'/services/fileservice.js');
 var fbService = require(rootdir+'/services/firebaseservice.js');
 var restClientService = require(rootdir+'/services/restclientservice.js');
 var dfService = require(rootdir+'/services/dialogflowservice.js');
+var moment = require('moment');
 
 var responsepay = {
     payload:{
@@ -28,6 +29,24 @@ module.exports = {
             res.status(200).json(responsedata);
         });
     },
+    getnlpWords:function(req,res,next){
+        var id = req.body.approvalId;
+        var msg = '';
+        //fbService.searchData('/npwords','id',id, function(jsonResponse){
+        fbService.getData('/npwords',function(jsonResponse){
+        
+            msg = msg+ 'Approval ID : '+id + '\n';
+          var npwords = util.getNpWords(jsonResponse,id);
+          console.log(npwords);
+            _.forEach(npwords[0].words, function(value) {
+                msg = msg + value + '\n';
+              });
+    
+              res.status(200).json(msg);
+				
+        });
+
+    },
 	sendslackmessage:function(req, res, next){
         var msg = req.body.slack;
         var result = util.postDataToSlack(msg,true);
@@ -36,6 +55,18 @@ module.exports = {
             res.status(200).json("Posted to Slack"); 
         else
             res.status(400).json("Error while Posting to Slack"); 
+    },
+    createintent:function(req, res, next){
+        var unixdatetime = moment().valueOf();
+        var actionData = util.getActionConfig("instbot.createintent");
+        var data = actionData[0];
+        
+        var url = data.url+"?v="+unixdatetime;
+        console.log(url);
+        restClientService.getRestApi(url, data.options,function(response){
+            console.log(response);
+            res.status(200).json(response);
+        })
     },
     postfromslack:function(req, res, next){
         console.log("req from slack=",req)
@@ -65,8 +96,7 @@ module.exports = {
 
     login: function(req, res, next){
         var username = req.body.users.username;
-       // var studname ='Suresh';
-		fbService.getData('/login/users/', function(jsonResponse){
+       fbService.getData('/login/users/', function(jsonResponse){
 			var result = util.getUserDetails(jsonResponse, username);
 				    
             res.status(200).json(result);

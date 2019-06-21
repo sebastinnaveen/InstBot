@@ -32,7 +32,11 @@ module.exports = {
 	firebaseNodejs.selectData(fbConnection, url, 'value', response => {
 			callback(response);
 		});
-	}
-
+	},
+	searchData: function(url,searchKey,searchValue,callback){
+		firebaseNodejs.searchData(fbConnection, url, searchKey,searchValue, response => {
+				callback(response);
+			});
+		}
 
 }

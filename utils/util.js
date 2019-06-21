@@ -69,7 +69,15 @@ module.exports = {
 	   console.log("Posted to slack");
        return true;
        
-    },
+	},
+	getNpWords : function(obj, approvalId){
+		var result = _.filter(obj, function(data){
+			
+            return data.id === approvalId;
+		})
+		
+		return result;
+	},
 	getUserDetails : function(users, username){
 		var result = _.filter(users, function(data){
             return data.username.toLowerCase() === username.toLowerCase();
