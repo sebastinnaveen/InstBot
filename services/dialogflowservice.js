@@ -1,6 +1,7 @@
 var apiai = require('apiai');
+let axios = require('axios');
 
-
+var api_url = 'https://techbot-244314.appspot.com/np'
 
 module.exports = {
     dfTextRequest: function(request, callback){
@@ -13,6 +14,20 @@ module.exports = {
         
         request.on('response', function(response) {
             //console.log(response);
+            if(response.result.action === 'input.unknown'){
+                axios.post(api_url, {
+                    searchStr: response.result.resolvedQuery
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        //callback(response);
+                    })
+                    .catch(function (error) {
+                        //error.msg = 'error'
+                        //callback(error);
+                        console.log(error);
+                    });
+            }
             callback({success: true, data: response});
         });
         
@@ -22,22 +37,6 @@ module.exports = {
         });
         
         request.end();
-    },
-    createintent:function(request,callback){
-        
-            var app = apiai(dynamicConfig.nlp.dialogflow.client_key);
-            var request = app.intentPostRequest(request);
-            request.on('response', function(response) {
-                //console.log(response);
-                callback({success: true, data: response});
-            });
-            
-            request.on('error', function(error) {
-                //console.log(error);
-                callback({success: false, data: error});
-            });
-            
-            request.end();
-        
     }
+    
 }

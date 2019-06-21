@@ -5,6 +5,7 @@ var fileService = require(rootdir+'/services/fileservice.js');
 var fbService = require(rootdir+'/services/firebaseservice.js');
 var restClientService = require(rootdir+'/services/restclientservice.js');
 var dfService = require(rootdir+'/services/dialogflowservice.js');
+var crawlService = require(rootdir+'/services/crawlservice.js');
 var moment = require('moment');
 
 var responsepay = {
@@ -40,6 +41,29 @@ module.exports = {
             res.status(200).json(responsedata);
         });
     },
+    getCrawl: function(req, res, next){
+        var actionData = {
+            url:' https://markets.businessinsider.com/stocks/credit_suisse-stock',
+            parsing: [
+                {
+                    parsetxt:'Current',
+                    selector:'.push-data.aktien-big-font.text-nowrap'
+                },
+                {
+                    parsetxt:'Prev. Close',
+                    selector:'.price-row-price'
+                }
+
+            ],
+            message:'hi'
+        }
+        var queryText = ''
+
+        crawlService.crawlData(actionData, function(result){
+            var responsePayload = util.processData(result,queryText,actionData);
+            res.status(200).json(responsePayload);
+        })
+    },
     getnlpWords:function(req,res,next){
         var id = req.body.approvalId;
         var msg = '';
@@ -60,18 +84,7 @@ module.exports = {
 
     },
 	
-    createintent:function(req, res, next){
-        var unixdatetime = moment().valueOf();
-        var actionData = util.getActionConfig("instbot.createintent");
-        var data = actionData[0];
-        
-        var url = data.url+"?v="+unixdatetime;
-        console.log(url);
-        restClientService.getRestApi(url, data.options,function(response){
-            console.log(response);
-            res.status(200).json(response);
-        })
-    },
+    
     postfromslack:function(req, res, next){
         console.log("req from slack=",req.body)
         var msg = "Thank you for approval.";
@@ -116,19 +129,10 @@ module.exports = {
         });
 	},
 
-    login: function(req, res, next){
-        var username = req.body.users.username;
-       fbService.getData('/login/users/', function(jsonResponse){
-			var result = util.getUserDetails(jsonResponse, username);
-				    
-            res.status(200).json(result);
-				
-        });
-	   
-		
-    },
+    
     handleTextRequest: function(req, res, next){
        dfService.dfTextRequest(req.body, function(dfResponse){
+          // console.log(dfResponse.data);
             if(dfResponse.success){
                 res.status(200).json(dfResponse);
             }else{
@@ -141,14 +145,14 @@ module.exports = {
 
     fullfilment: function (req, res, next){
         var action = req.body.queryResult.action || '';
-		var queryText = req.body.queryResult.queryText || '';
-        console.log(action);
+        var queryText = req.body.queryResult.queryText || '';
+        var params = req.body.queryResult.parameters || {};
         var actionData = util.getActionConfig(action);
-        console.log(actionData);
         if(actionData.length > 0){
             var data = actionData[0];
             if(data.source === 'api'){
-                restClientService.getRestApi(data.url, data.options,function(response){
+                var url = _.template(data.url);
+                restClientService.getApiData(compiled(params), data.options,function(response){
 					var responsePayload = util.processApiData(response,queryText,data);
 					res.status(200).json(responsePayload);
                 })
@@ -164,7 +168,17 @@ module.exports = {
                     res.status(200).json(responsePayload);
 				
                 });
-            } else{
+            } else if(data.source === 'crawl'){
+
+                crawlService.crawlData(actionData, function(result){
+                    var responsePayload = util.processData(result,queryText,data);
+					res.status(200).json(responsePayload);
+                })
+                
+            } else if(data.source === 'text'){
+                res.status(200).json(data.message);
+            }            
+            else{
                 res.status(200).json(responsepay);
             }
         } else{

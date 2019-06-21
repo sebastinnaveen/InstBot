@@ -12,7 +12,7 @@ var fbService = require(rootdir+'/services/firebaseservice.js');
 });*/
 
 router.get('/test', function(req, res, next){
-    controller.test(req, res, next);
+    controller.getCrawl(req, res, next);
 });
 router.post('/test', function(req, res, next){
   controller.test(req, res, next);
@@ -32,17 +32,7 @@ router.post('/sendslackmessage', function(req, res, next){
 router.post('/postfromslack', function(req, res, next){
   controller.postfromslack(req, res, next);
 })
-router.post('/createintent', function(req, res, next){
-  fbService.getData('/config', function(dynamicConfig){
-    global.dynamicConfig = dynamicConfig
-    controller.createintent(req, res, next);
-  });
-  
-  
-})
-router.post('/login', function(req, res, next){
-  controller.login(req, res, next);
-});
+
 router.post('/nlp', function(req, res, next){
   fbService.getData('/config', function(dynamicConfig){
     global.dynamicConfig = dynamicConfig

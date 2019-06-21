@@ -6,7 +6,8 @@ var responseData= {
 		message: '',
 		data :{
 			
-		}
+		},
+		responsekeys: []
 	}
 }
 
@@ -88,8 +89,17 @@ module.exports = {
 		return result;
 	},
 	processApiData: function(response,queryText,actionData){
-	
-		if(queryText!='' && queryText.toLowerCase()==='project'){
+		responseData= {
+			payload : {
+				displaytype: '',
+				message: '',
+				data :{
+					
+				},
+				responsekeys: []
+			}
+		}
+		/*if(queryText!='' && queryText.toLowerCase()==='project'){
 			console.log(response);
 			var jsonData = response
 			if(jsonData.length > 0){
@@ -107,22 +117,82 @@ module.exports = {
 				responseData.payload.data = jsonArray;
 				responseData.payload.displaytype = actionData.displaytype;
 				responseData.payload.message = actionData.message;
+			}*/
+			if(queryText!=''){
+				var newData;
+				if(_.isArray(response)){
+					newData = [];
+					_.each(response, function(re){
+						var d = _.pick(re, actionData.responsekeys);
+						newData.push(d);
+					})
+
+				}else {
+					newData = _.pick(response, actionData.responsekeys);
+				}
+				responseData.payload.message = actionData.message;
+				responseData.payload.responsekeys = actionData.responsekeys;
+				responseData.payload.data = newData;
 			}
 			
 			return responseData;
-		}
+		},
 		
 		
-	},
+
 	processDbData: function(response,queryText,actionData){
-		
-				responseData.payload.data = response;
-				responseData.payload.displaytype = actionData.displaytype;
+		responseData= {
+			payload : {
+				displaytype: '',
+				message: '',
+				data :{
+					
+				},
+				responsekeys: []
+			}
+		}
+				var newData;
+				if(_.isArray(response)){
+					newData = [];
+					_.each(response, function(re){
+						var d = _.pick(re, actionData.responsekeys);
+						newData.push(d);
+					})
+
+				}else {
+					newData = _.pick(response, actionData.responsekeys);
+				}
+				responseData.payload.data = newData;
+				responseData.payload.responsekeys = actionData.responsekeys;
 				responseData.payload.message = actionData.message;
 		
 		return responseData;
 	},
+	processTextData: function (msg){
+		responseData= {
+			payload : {
+				displaytype: '',
+				message: '',
+				data :{
+					
+				},
+				responsekeys: []
+			}
+		}
+		responseData.payload.message = msg;
+	},
 	processData: function(response,queryText,actionData){
+		responseData= {
+			payload : {
+				displaytype: '',
+				message: '',
+				data :{
+					
+				},
+				responsekeys: []
+			}
+		}
+
 		responseData.payload.data = response;
 		responseData.payload.displaytype = actionData.displaytype;
 		responseData.payload.message = actionData.message;
