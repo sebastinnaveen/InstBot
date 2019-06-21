@@ -19,6 +19,17 @@ var responsedata = {
     }
 }
 
+ function sendslackmessage(msg){
+    //var msg = req.body.slack;
+    var result =  util.postDataToSlack(msg,true);
+    console.log(result);
+    
+    if(result)
+       return result
+    else
+        return 'error'
+}
+
 module.exports = {
     test: function(req, res, next){        
         res.status(200).json(responsepay);
@@ -42,20 +53,13 @@ module.exports = {
                 msg = msg + value + '\n';
               });
     
-              res.status(200).json(msg);
+              var result =  sendslackmessage(msg)
+              res.status(200).json(result);
 				
         });
 
     },
-	sendslackmessage:function(req, res, next){
-        var msg = req.body.slack;
-        var result = util.postDataToSlack(msg,true);
-        console.log(result);
-        if(result)
-            res.status(200).json("Posted to Slack"); 
-        else
-            res.status(400).json("Error while Posting to Slack"); 
-    },
+	
     createintent:function(req, res, next){
         var unixdatetime = moment().valueOf();
         var actionData = util.getActionConfig("instbot.createintent");
@@ -69,7 +73,7 @@ module.exports = {
         })
     },
     postfromslack:function(req, res, next){
-        console.log("req from slack=",req)
+        console.log("req from slack=",req.body)
         var msg = "Thank you for approval.";
         var result = util.postDataToSlack(msg,false);
         console.log(result);

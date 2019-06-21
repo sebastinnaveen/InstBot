@@ -18,7 +18,7 @@ module.exports = {
 
         return result;
     },
-	postDataToSlack:function(message,isApproval){
+	postDataToSlack: function(message,isApproval){
         webhookUri = "https://hooks.slack.com/services/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";
         
        slack = new Slack();
