@@ -150,9 +150,10 @@ module.exports = {
         var actionData = util.getActionConfig(action);
         if(actionData.length > 0){
             var data = actionData[0];
+            //console.log(data)
             if(data.source === 'api'){
                 var url = _.template(data.url);
-                restClientService.getApiData(compiled(params), data.options,function(response){
+                restClientService.getApiData(url(params), data.options,function(response){
 					var responsePayload = util.processApiData(response,queryText,data);
 					res.status(200).json(responsePayload);
                 })
@@ -170,13 +171,18 @@ module.exports = {
                 });
             } else if(data.source === 'crawl'){
 
-                crawlService.crawlData(actionData, function(result){
+
+                crawlService.crawlData(data, function(result){
+                    console.log(result);
                     var responsePayload = util.processData(result,queryText,data);
 					res.status(200).json(responsePayload);
                 })
                 
             } else if(data.source === 'text'){
-                res.status(200).json(data.message);
+               // processTextData
+                var responsePayload = util.processTextData(data.message);
+					res.status(200).json(responsePayload);
+               // res.status(200).json(data.message);
             }            
             else{
                 res.status(200).json(responsepay);

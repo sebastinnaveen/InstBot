@@ -120,7 +120,7 @@ module.exports = {
 			}*/
 			if(queryText!=''){
 				var newData;
-				if(actionData.responsekeys.length > 0){
+				if(actionData.responsekeys && actionData.responsekeys.length > 0){
 					if(_.isArray(response)){
 						newData = [];
 						_.each(response, function(re){
@@ -189,6 +189,8 @@ module.exports = {
 			}
 		}
 		responseData.payload.message = msg;
+
+		return responseData;
 	},
 	processData: function(response,queryText,actionData){
 		responseData= {
