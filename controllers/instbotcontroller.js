@@ -75,12 +75,27 @@ module.exports = {
     postfromslack:function(req, res, next){
         console.log("req from slack=",req.body)
         var msg = "Thank you for approval.";
-        var result = util.postDataToSlack(msg,false);
-        console.log(result);
-        if(result)
-            res.status(200).json("Posted to Slack"); 
-        else
-            res.status(400).json("Error while Posting to Slack"); 
+        console.log(req.body.text)
+        var textArr = req.body.text.split('#');
+        var approvalId = textArr[1];
+        fbService.getData('/npwords',function(jsonResponse){
+            
+             var npwords = util.getNpWords(jsonResponse,approvalId);
+              console.log(npwords);
+               npwords.status = "approved";
+                
+               fbService.updateData('/npwords',npwords,function(jsonResp){
+                console.log(jsonResp);
+                var result = util.postDataToSlack(msg,false);
+                console.log(result);
+                if(result)
+                    res.status(200).json("Posted to Slack"); 
+                else
+                    res.status(400).json("Error while Posting to Slack"); 
+                
+                });
+            });  
+        
     },
 	updateData:function(req,res,next){
 		var payload = req.body.dialogflow;
