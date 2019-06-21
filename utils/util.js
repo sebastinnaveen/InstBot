@@ -119,7 +119,7 @@ module.exports = {
 				responseData.payload.message = actionData.message;
 			}*/
 			if(queryText!=''){
-				var newData;
+				var newData = [];
 				if(actionData.responsekeys && actionData.responsekeys.length > 0){
 					if(_.isArray(response)){
 						newData = [];
@@ -129,10 +129,10 @@ module.exports = {
 						})
 	
 					}else {
-						newData = _.pick(response, actionData.responsekeys);
+						newData.push(_.pick(response, actionData.responsekeys));
 					}
 				}else{
-					newData = response;
+					newData.push(response);
 				}
 				
 				responseData.payload.message = actionData.message;
@@ -166,10 +166,10 @@ module.exports = {
 					})
 
 				}else {
-					newData = _.pick(response, actionData.responsekeys);
+					newData.push(_.pick(response, actionData.responsekeys));
 				}
 			}else{
-				newData = response;
+				newData.push(response);
 			}
 				responseData.payload.data = newData;
 				responseData.payload.responsekeys = actionData.responsekeys;
