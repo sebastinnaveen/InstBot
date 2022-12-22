@@ -43,7 +43,7 @@
     "firebase-admin": "^8.2.0",
     "firebase-nodejs": "^1.0.1-1.1",
     "generic-pool": "^3.4.2",
-    "jsonwebtoken": "^8.2.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.10",
     "method-override": "^2.3.10",
     "moment": "^2.24.0",
